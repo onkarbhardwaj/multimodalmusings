@@ -10,10 +10,10 @@
 
 <body>
     <h1>Thoughts on Prompting LLMs</h1>
-    <div class="writings">
+    <div class="post">
         Prompting LLMs is hard and almost feels like magic. Recently I have been reading a bunch of things... and it is vast. I tried to make sense to put some black on white.
-        <h3>Single Query Prompts for Instruct-Tuned LLMs</h3>
-        <h4>Two Fundamental Components of a Prompt</h4>
+        <h3>1. Single Query Prompts for Instruct-Tuned LLMs</h3>
+        <h4>1.1 Two Fundamental Components of a Prompt</h4>
         <p>
             In this section, I will try to limit ourselves to sending just one prompt to LLMs. Thus, I will not talk about techniques
             such as ensembling or self-criticism. I will also stay away from "agentic" settings which require a task to be decomposed into multiple
@@ -28,7 +28,7 @@
             reformats/extracts output in desired format. Sometimes LLM output inherently satisfies required format, e.g., code LLMs are
             tuned to output code. However, Answer Format is almost a fundamental necessity for LLMs to be embedded in a workflow.
         </p>
-        <h4>Breaking Down Further</h4>
+        <h4>1.2 Breaking Down Further</h4>
         <p>
             Although "Answer Format" is reasonably well-defined, "Task" is still a vague term. By "Task" I mean everything that goes
             under the prompt that's not "Answer Format", basically the thing that we are asking an LLM to do. If we anthropomorphize,
@@ -47,15 +47,15 @@
 
         The above components seem to be almost universal, i.e., they are <b>LLM-independent components</b>.
 
-        <h4>LLM-dependent Components and Ordering</h4>
+        <h4>1.3 Axis 1: LLM-dependent Components and Ordering</h4>
         <p>
-            How you stitch the above components together, and how to specify additional components such as function calling could
+            How you stitch the above components together (<i>stylization</i>), and how to specify additional components such as function calling could
             often be LLM-dependent. For example, they say that some LLMs like the instruction to be given towards the beginning
             than at the end. Also, how you might separate any input-output pairs in the demonstrations (item 2 above) - use a single
             newline or some other separator could also be something that's LLM-dependent.
         </p>
 
-        <h4>Axis 2: Data Dependency</h4>
+        <h4>1.4 Axis 2: Data Dependency</h4>
         <p>
             Another axis of dependency here is data-dependency. You cannot give examples or demonstrations (e.g.,
             chain-of-thought with step-by-step demos) if you don't have data available to form examples/demos when the task could
@@ -63,7 +63,7 @@
             multiple-choice QA to test knowledge, or sentiment extraction.
         </p>
 
-        <h4>Axis 3: Complexity</h4>
+        <h4>1.5 Axis 3: Complexity</h4>
         <p>
             Each of the component can further be optimized, e.g.,
             <ul>

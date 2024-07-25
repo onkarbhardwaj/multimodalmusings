@@ -1,12 +1,25 @@
+html, body {
+    height: 100%;
+}
+
+html {
+    display: table;
+    margin: auto;
+}
+
 body {
-    font-family: Arial, sans-serif;
+    vertical-align: top;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: medium;
+    /* font-family: Arial, sans-serif; */
     line-height: 1.6;
     padding: 20px;
-    background-color: #f4f4f4;
+    background-color: white;
+    margin: 5%;
 }
 
 h1 {
-    color: #333;
+    color: black
 }
 
 p {
@@ -58,26 +71,40 @@ li {
 
 }
 
-.profile-photo {
-    width: 100px;
-    /* Adjust size as needed */
-    height: auto;
-    border-radius: 10px;
-    /* Optional: adds rounded corners to your image */
+.boxed {
+    /* Make border rounded below */
+    border-radius: 5px;
+    border: 2px solid gray;
+    margin: 5px;
+    padding: 5px;
 }
 
-.writings {
+.post {
+    justify-content: left;
+    align-items: left;
+}
+
+.profile-photo {
+    width: 100px;
+    height: auto;
+    border-radius: 10px;
+}
+
+.writings-list {
     text-align: left;
-    /* margin-left: 0px; */
+    /* margin-left: 0px;
     padding-top: 20px;
-    padding-left: 0px
+    padding-left: 0px */
 }
 
 /* Media query for mobile devices */
 @media (max-width: 768px) {
     .content {
         flex-direction: column;
-        /* stack items vertically on small screens */
+    }
+
+    .writings {
+        flex-direction: column;
     }
 
     .profile-photo {
@@ -92,7 +119,7 @@ li {
         /* centers text on small screens */
     }
 
-    .writings {
+    .writings-list {
         flex-direction: column;
     }
 }
