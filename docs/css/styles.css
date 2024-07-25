@@ -1,0 +1,98 @@
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+
+h1 {
+    color: #333;
+}
+
+p {
+    margin: 20px 0;
+}
+
+.title-footer {
+    font-size: large;
+}
+
+.title-disclaimer {
+    font-size: 70%;
+}
+
+a {
+    color: #055;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+ul {
+    list-style-type: circle;
+    /* padding: 0; */
+}
+
+li {
+    padding: 5px 0;
+}
+
+.about-container {
+    text-align: left;
+    /* margin-left: 0px; */
+    padding-top: 20px;
+    padding-left: 0px
+}
+
+.content {
+    display: flex;
+    flex-direction: row;
+    /* side-by-side layout */
+    justify-content: left;
+    align-items: left;
+    gap: 20px;
+    /* space between the image and the text */
+    margin-top: 20px;
+
+}
+
+.profile-photo {
+    width: 100px;
+    /* Adjust size as needed */
+    height: auto;
+    border-radius: 10px;
+    /* Optional: adds rounded corners to your image */
+}
+
+.writings {
+    text-align: left;
+    /* margin-left: 0px; */
+    padding-top: 20px;
+    padding-left: 0px
+}
+
+/* Media query for mobile devices */
+@media (max-width: 768px) {
+    .content {
+        flex-direction: column;
+        /* stack items vertically on small screens */
+    }
+
+    .profile-photo {
+        width: 100%;
+        /* full width on small screens */
+        max-width: 400px;
+        /* limits photo size even when full width */
+    }
+
+    .description {
+        text-align: left;
+        /* centers text on small screens */
+    }
+
+    .writings {
+        flex-direction: column;
+    }
+}

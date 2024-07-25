@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prompting Techniques</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+
+<body>
+    <h1>Thoughts on Prompting LLMs</h1>
+    <div class="writings">
+        Prompting LLMs is hard and almost feels like magic. Recently I have been reading a bunch of things... and it is vast. I tried to make sense to put some black on white.
+        <h3>Single Query Prompts for Instruct-Tuned LLMs</h3>
+        <h4>Two Fundamental Components of a Prompt</h4>
+        <p>
+            In this section, I will try to limit ourselves to sending just one prompt to LLMs. Thus, I will not talk about techniques
+            such as ensembling or self-criticism. I will also stay away from "agentic" settings which require a task to be decomposed into multiple
+            subtasks which could be then handled by different system components (including LLMs). I also exclude any function calling.
+        </p>
+        <p>
+            To me, the most fundamental two components in the order of importance seem to be "Task" and "Answer Format". While the first one is
+            obvious, the second component comes immediately afterwards. If a LLM is going to be a component of a system that's reliable, and
+            especially if its output is going to form the input of some other stage, then the answer needs to be in a certain format. Sometimes
+            this format is just text (e.g., in summarization) but most times we need the answer to conform to either a fixed set of labels or
+            some json schema or some other schema. For less capable LLMs, many times this could be achieved by having another LLM which then
+            reformats/extracts output in desired format. Sometimes LLM output inherently satisfies required format, e.g., code LLMs are
+            tuned to output code. However, Answer Format is almost a fundamental necessity for LLMs to be embedded in a workflow.
+        </p>
+        <h4>Breaking Down Further</h4>
+        <p>
+            Although "Answer Format" is reasonably well-defined, "Task" is still a vague term. By "Task" I mean everything that goes
+            under the prompt that's not "Answer Format", basically the thing that we are asking an LLM to do. If we anthropomorphize,
+            then when we ask someone for help with a "Task", these are usually the things we communicate (not necessarily in that order):
+            <ol>
+                <li>Context: What's to be done at high level</li>
+                <li>Demonstrations, Examples, or Methodology</li>
+                <li>Rules: Do's and Don'ts</li>
+                <li>Specific task input</li>
+                <li>Precise instruction</li>
+                <li>(Answer Format)</li>
+            </ol>
+            We don't always communicate everything - maybe sometimes we just tell the specific task input and precise instruction and that's enough.
+            Thus, the 4th and 5th items are probably the most core of "Task".
+        </p>
+
+        The above components seem to be almost universal, i.e., they are <b>LLM-independent components</b>.
+
+        <h4>LLM-dependent Components and Ordering</h4>
+        <p>
+            How you stitch the above components together, and how to specify additional components such as function calling could
+            often be LLM-dependent. For example, they say that some LLMs like the instruction to be given towards the beginning
+            than at the end. Also, how you might separate any input-output pairs in the demonstrations (item 2 above) - use a single
+            newline or some other separator could also be something that's LLM-dependent.
+        </p>
+
+        <h4>Axis 2: Data Dependency</h4>
+        <p>
+            Another axis of dependency here is data-dependency. You cannot give examples or demonstrations (e.g.,
+            chain-of-thought with step-by-step demos) if you don't have data available to form examples/demos when the task could
+            be general or intuitive. For example, a user may omit to give examples/demos for tasks such as summarization,
+            multiple-choice QA to test knowledge, or sentiment extraction.
+        </p>
+
+        <h4>Axis 3: Complexity</h4>
+        <p>
+            Each of the component can further be optimized, e.g.,
+            <ul>
+                <li>How to select best/diverse examples,</li>
+                <li>Giving both positive and negative examples,</li>
+                <li>Different variations of chain-of-thought,</li>
+                <li>Generating semantic variations of the prompt components to see performance,</li>
+                <li>etc.</li>
+            </ul>
+        </p>
+    </div>
+</body>
+
+<footer>
+    <p xmlns:cc="http://creativecommons.org/ns#">This work is licensed under <a
+            href="https://creativecommons.org/licenses/by/4.0/?ref=chooser-v1" target="_blank"
+            rel="license noopener noreferrer" style="display:inline-block;">CC BY 4.0<img
+                style="height:22px!important;margin-left:3px;vertical-align:text-bottom;"
+                src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" alt=""><img
+                style="height:22px!important;margin-left:3px;vertical-align:text-bottom;"
+                src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" alt=""></a></p>
+</footer>
+
+</html>
